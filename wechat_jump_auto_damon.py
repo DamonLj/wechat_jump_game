@@ -127,7 +127,7 @@ def find_piece_and_board(im):
         board_x_end = piece_x
 
     for i in range(int(h / 3), int(h * 2 / 3)):
-        bg_pixel = im_pixel[0, i]
+        bg_pixel = im_pixel[0, i]  # 背景像素
         board_x_sum = 0
         board_x_c = 0
 
@@ -167,6 +167,8 @@ def find_piece_and_board(im):
         pixel = im_pixel[board_x, j]
         if abs(pixel[0] - 245) + abs(pixel[1] - 245) + abs(pixel[2] - 245) == 0:
             board_y = j + 10
+            board_y = int(random.uniform(board_y-(k-i)/3, board_y+(k-i)/3))  # 防ban随机k-i为高度
+            board_x = int(random.uniform(board_x-board_x_c/3, board_x+board_x_c/3))  # 防ban随机
             break
 
     if not all((board_x, board_y)):
